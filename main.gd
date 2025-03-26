@@ -41,9 +41,20 @@ func new_game():
 	$Player.reset()
 	await $HUD/Timer.timeout
 	playing = true
+	$Player.reset()
 	
 func new_level():
 	level += 1
 	$HUD.show_message("Wave %s" % level)
 	for i in level:
 		spawn_rock(3)
+		
+func _process(delta):
+	if not playing:
+		return
+	if get_tree().get_nodes_in_group("rocks").size() == 0:
+		new_level()
+		
+func game_over():
+	playing = false
+	$HUD.game_over()

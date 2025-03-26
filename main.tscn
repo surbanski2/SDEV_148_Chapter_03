@@ -29,3 +29,7 @@ position = Vector2(-832, -448)
 rotation = 0.00499996
 
 [node name="HUD" parent="." instance=ExtResource("5_lquwl")]
+
+[connection signal="dead" from="Player" to="." method="game_over"]
+[connection signal="lives_changed" from="Player" to="HUD" method="update_lives"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]

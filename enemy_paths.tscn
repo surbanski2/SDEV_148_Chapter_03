@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://s7txvlamqo3u"]
+
+[sub_resource type="Curve2D" id="Curve2D_gxig3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 608, -272, 161.201, -7.13279, -161.201, 7.13279, 496, 208, -31.3843, 213.984, 31.3843, -213.984, 64, 200, 58.4889, -109.845, -58.4889, 109.845, -144, -56, 0, 0, 0, 0, -304, -184)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_emdvi"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -256, 184, -116.978, 213.984, 116.978, -213.984, 144, -88, 38.5171, 19.9718, -38.5171, -19.9718, 256, 8, -25.6781, -89.8732, 25.6781, 89.8732, 144, 64, 0, 0, 0, 0, 544, -48)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_sxqqp"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 496, -224, 151.215, 82.7404, -151.215, -82.7404, 64, -240, -216.837, 0, 216.837, 0, 112, 120, 112.698, -45.6499, -112.698, 45.6499, -72, 256, 0, 0, 0, 0, -144, -208)
+}
+point_count = 5
+
+[node name="EnemyPaths" type="Node"]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_gxig3")
+
+[node name="Path2D2" type="Path2D" parent="."]
+curve = SubResource("Curve2D_emdvi")
+
+[node name="Path2D3" type="Path2D" parent="."]
+position = Vector2(-24, 16)
+curve = SubResource("Curve2D_sxqqp")

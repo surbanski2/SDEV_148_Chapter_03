@@ -80,3 +80,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("3_a2258")
 texture_hover = ExtResource("4_1xsix")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

@@ -23,3 +23,11 @@ func game_over():
 	show_message("Game Over")
 	await $Timer.timeout
 	start_button.show()
+
+func _on_start_button_pressed():
+	start_button.hide()
+	start_game.emit()
+	
+func _on_timer_timeout():
+	message.hide()
+	message.text = ""

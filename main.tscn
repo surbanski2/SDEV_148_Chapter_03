@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccfpd8b0jw1ck"]
+
+[ext_resource type="Texture2D" uid="uid://c8tx5w7txwnur" path="res://assets/space_background.png" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cus8piumgbela" path="res://player.tscn" id="2_h2yge"]
+
+[node name="Main" type="Node"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_0xm2m")
+
+[node name="Player" parent="." instance=ExtResource("2_h2yge")]

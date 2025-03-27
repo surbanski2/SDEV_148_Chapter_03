@@ -28,6 +28,7 @@ func shoot():
 	var b = bullet_scene.instantiate()
 	get_tree().root.add_child(b)
 	b.start(global_position, dir)
+	$ShootSound.play()
 
 func _on_gun_cooldown_timeout() -> void:
 	shoot_pulse(3, 0.15)
@@ -49,6 +50,7 @@ func explode():
 	$CollisionShape2D.set_deferred("disabled", true)
 	$Sprite2D.hide()
 	$Explosion.show()
+	$ExplosionSound.play()
 	$Explosion/AnimationPlayer.play("explosion")
 	await  $Explosion/AnimationPlayer.animation_finished
 	queue_free()

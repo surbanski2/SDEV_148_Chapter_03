@@ -1,12 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://cus8piumgbela"]
+[gd_scene load_steps=10 format=3 uid="uid://cus8piumgbela"]
 
 [ext_resource type="Texture2D" uid="uid://bcew2gjc8qfj5" path="res://assets/player_ship.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://b2sefwrtbb586" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://dt6qs3177ra8v" path="res://bullet.tscn" id="2_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://c8u2w75g2f6aa" path="res://explosion.tscn" id="4_hqtel"]
+[ext_resource type="AudioStream" uid="uid://p5mw0nbwhia6" path="res://assets/sounds/laser.ogg" id="5_2hs0m"]
+[ext_resource type="AudioStream" uid="uid://bg8kcodiidqi7" path="res://assets/sounds/engine.ogg" id="6_1jxqw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 31.1448
+
+[sub_resource type="Curve" id="Curve_2hs0m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.252766), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_1jxqw"]
+offsets = PackedFloat32Array(0, 0.805556)
+colors = PackedColorArray(1, 0.490196, 0.0666667, 1, 0.588235, 0, 0.105882, 1)
 
 [node name="Player" type="RigidBody2D"]
 contact_monitor = true
@@ -37,6 +47,26 @@ visible = false
 [node name="InvulnerabilityTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="LaserSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2hs0m")
+
+[node name="EngineSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_1jxqw")
+
+[node name="Exhaust" type="CPUParticles2D" parent="."]
+position = Vector2(-28, 0)
+rotation = 3.14159
+amount = 25
+lifetime = 0.1
+emission_shape = 3
+emission_rect_extents = Vector2(1, 5)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 400.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_2hs0m")
+color_ramp = SubResource("Gradient_1jxqw")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]

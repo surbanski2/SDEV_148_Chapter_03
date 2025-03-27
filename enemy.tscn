@@ -1,12 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5k3i28no0rgh"]
+[gd_scene load_steps=10 format=3 uid="uid://c5k3i28no0rgh"]
 
 [ext_resource type="Texture2D" uid="uid://c071kicvp8xex" path="res://assets/enemy_saucer.png" id="1_7k104"]
 [ext_resource type="Script" uid="uid://bsvp21kjupjsj" path="res://enemy.gd" id="1_iifgy"]
 [ext_resource type="PackedScene" uid="uid://s7txvlamqo3u" path="res://enemy_paths.tscn" id="2_4gyqm"]
+[ext_resource type="PackedScene" uid="uid://ckcjkv1aycha2" path="res://enemy_bullet.tscn" id="2_epg4t"]
 [ext_resource type="PackedScene" uid="uid://c8u2w75g2f6aa" path="res://explosion.tscn" id="3_qi2p4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
 radius = 36.0139
+
+[sub_resource type="Animation" id="Animation_iifgy"]
+length = 0.25
 
 [sub_resource type="Animation" id="Animation_qi2p4"]
 resource_name = "flash"
@@ -25,9 +29,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_iifgy"]
-length = 0.25
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epg4t"]
 _data = {
 &"RESET": SubResource("Animation_iifgy"),
@@ -36,6 +37,7 @@ _data = {
 
 [node name="Enemy" type="Area2D" groups=["enemies"]]
 script = ExtResource("1_iifgy")
+bullet_scene = ExtResource("2_epg4t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0.995117, 0.995117, 1)
@@ -61,4 +63,5 @@ visible = false
 wait_time = 1.5
 autostart = true
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]

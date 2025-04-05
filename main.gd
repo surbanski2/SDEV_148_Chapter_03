@@ -25,6 +25,8 @@ func spawn_rock(size, pos=null, vel=null):
 	
 func _on_rock_exploded(size, radius, pos, vel):
 	$ExplosionSound.play()
+	score += 10 * size
+	$HUD.update_score(score)
 	if size <= 1:
 		return
 	for offset in [-1,1]:
